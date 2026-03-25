@@ -4,11 +4,14 @@ import { visionTool } from '@sanity/vision'
 import { siteData } from './schemas/siteData'
 
 export default defineConfig({
-  name: 'gourav-portfolio',
+  name: 'default',
   title: 'Gourav Portfolio',
-  projectId: process.env.NEXT_PUBLIC_SANITY_PROJECT_ID!,
-  dataset: process.env.NEXT_PUBLIC_SANITY_DATASET!,
+
+  // Use the env variable, but fallback to your ID if it's missing
+  projectId: process.env.NEXT_PUBLIC_SANITY_PROJECT_ID || '6gvgvzhw',
+  dataset: process.env.NEXT_PUBLIC_SANITY_DATASET || 'production',
+  
+  basePath: '/portfolio/studio/', 
   plugins: [structureTool(), visionTool()],
   schema: { types: [siteData] },
-  basePath: '/portfolio/studio',
 })

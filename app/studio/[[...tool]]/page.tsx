@@ -1,13 +1,12 @@
-'use client'
+import Studio from './Studio'
 
-import { NextStudio } from 'next-sanity/studio'
-import config from '../../../sanity/config'
-export const dynamic = 'force-static';
-// Add this block below your imports
+// This stays here because it's a server-side build instruction
 export const generateStaticParams = () => {
   return [{ tool: [] }];
 };
 
+export const dynamic = 'force-static';
+
 export default function StudioPage() {
-  return <NextStudio config={config} />
+  return <Studio />
 }

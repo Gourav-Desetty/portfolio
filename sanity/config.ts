@@ -11,7 +11,7 @@ export default defineConfig({
   projectId: process.env.NEXT_PUBLIC_SANITY_PROJECT_ID || '6gvgvzhw',
   dataset: process.env.NEXT_PUBLIC_SANITY_DATASET || 'production',
   
-  basePath: '/portfolio/studio/', 
+  basePath: '/portfolio/studio', 
   plugins: [structureTool(), visionTool()],
   schema: { types: [siteData] },
 })

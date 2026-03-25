@@ -30,7 +30,7 @@ export default function Projects({ data }: ProjectsProps) {
               </div>
               <div className="project-footer">
                 <div className="project-tags">
-                  {project.tags.map((tag, j) => (
+                  {project.tags?.map((tag, j) => (
                     <span key={j} className="tag">{tag}</span>
                   ))}
                 </div>

@@ -10,6 +10,7 @@ export default defineConfig({
   // Use the env variable, but fallback to your ID if it's missing
   projectId: process.env.NEXT_PUBLIC_SANITY_PROJECT_ID || '6gvgvzhw',
   dataset: process.env.NEXT_PUBLIC_SANITY_DATASET || 'production',
+  apiVersion: process.env.NEXT_PUBLIC_SANITY_API_VERSION || '2024-01-01',
   
   basePath: '/portfolio/studio', 
   plugins: [structureTool(), visionTool()],

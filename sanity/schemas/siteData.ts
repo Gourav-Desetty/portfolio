@@ -65,5 +65,20 @@ export const siteData = defineType({
     }),
     defineField({ name: 'contactHeading', title: 'Contact Heading', type: 'string' }),
     defineField({ name: 'contactSub', title: 'Contact Subtitle', type: 'string' }),
+    defineField({
+      name: 'resume',
+      title: 'Resume PDF',
+      type: 'file',
+      options: {
+        accept: '.pdf'
+      },
+      fields: [
+        {
+          name: 'description',
+          type: 'string',
+          title: 'Description',
+        }
+      ]
+    }),
   ],
 })

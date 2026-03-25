@@ -88,7 +88,9 @@ function CodeBlock() {
 }
 
 interface HeroProps {
-  data: Pick<SiteData, 'name' | 'tagline' | 'eyebrow' | 'email' | 'github' | 'linkedin' | 'photo'>
+  data: SiteData & {
+    resumeUrl?: string; // Still keep this here since we added it to the query manually
+  }
 }
 
 export default function Hero({ data }: HeroProps) {
@@ -120,7 +122,14 @@ export default function Hero({ data }: HeroProps) {
             <p className="hero-tagline hero-anim">{data.tagline}</p>
             <div className="hero-actions hero-anim">
               <a href="#projects" className="btn-primary">View Projects</a>
-              <a href="#contact" className="btn-ghost">Get in touch</a>
+              <a
+                href={data.resumeUrl ?? "/resume.pdf"}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="btn-ghost"
+              >
+                Resume
+              </a>
             </div>
             <div className="hero-links hero-anim">
               {data.github && (

@@ -54,7 +54,7 @@ export const fallbackData: SiteData = {
         'Qdrant vector DB for embedding storage',
       ],
       tags: ['Evidently AI', 'Prometheus', 'Grafana'],
-      githubUrl: 'https://github.com/Gourav-Desetty/Model-Drift',
+      githubUrl: 'Grafana',
     },
     {
       number: '03',

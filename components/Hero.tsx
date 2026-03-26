@@ -123,7 +123,7 @@ export default function Hero({ data }: HeroProps) {
             <div className="hero-actions hero-anim">
               <a href="#projects" className="btn-primary">View Projects</a>
               <a
-                href={data.resumeUrl ?? "/resume.pdf"}
+                href={data.resumeUrl ?? "/portfolio/resume.pdf"}
                 target="_blank"
                 rel="noopener noreferrer"
                 className="btn-ghost"

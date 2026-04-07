@@ -92,7 +92,6 @@ interface HeroProps {
 }
 
 export default function Hero({ data }: HeroProps) {
-  const resumeHref = data.resumeUrl || '/portfolio/resume.pdf';
   const [photoSrc, setPhotoSrc] = useState<string | null>(data.photo || null)
   const inputRef = useRef<HTMLInputElement>(null)
 
@@ -106,6 +105,9 @@ export default function Hero({ data }: HeroProps) {
 
   const [first, ...rest] = (data.name || 'Gourav Desetty').split(' ')
   const last = rest.join(' ')
+
+  // Use Sanity resumeUrl if available, otherwise fall back to static file
+  const resumeHref = data.resumeUrl || '/portfolio/resume.pdf'
 
   return (
     <section id="hero" className="min-h-screen flex items-center pt-24 pb-16 text-left">
@@ -154,25 +156,6 @@ export default function Hero({ data }: HeroProps) {
           </div>
 
           {/* Right: animated code block */}
-          {/* Photo slot — commented out, restore by replacing CodeBlock with photo div below */}
-          {/*
-          <div className="hero-photo hero-anim">
-            <div className="hero-photo-frame group" onClick={() => inputRef.current?.click()}>
-              {photoSrc ? (
-                <img src={photoSrc} alt={data.name} className="w-full h-full object-cover block" />
-              ) : (
-                <div className="hero-photo-placeholder">
-                  <UserIcon />
-                  <span className="text-[0.72rem] tracking-widest uppercase opacity-50">Add your photo</span>
-                </div>
-              )}
-              <div className="photo-upload-label opacity-0 group-hover:opacity-100 transition-opacity duration-300">
-                <span>Upload photo</span>
-              </div>
-              <input ref={inputRef} type="file" accept="image/*" className="hidden" onChange={handleFile} />
-            </div>
-          </div>
-          */}
           <div className="hero-photo hero-anim">
             <CodeBlock />
           </div>

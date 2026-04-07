@@ -28,6 +28,7 @@ export interface SiteData {
   twitter: string
   leetcode: string
   photo: string | null
+  resumeUrl?: string | null
   aboutHeading: string
   aboutBio: string[]
   aboutQuote: string

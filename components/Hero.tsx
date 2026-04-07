@@ -94,6 +94,7 @@ interface HeroProps {
 }
 
 export default function Hero({ data }: HeroProps) {
+  const resumeHref = data.resumeUrl || '/portfolio/resume.pdf';
   const [photoSrc, setPhotoSrc] = useState<string | null>(data.photo || null)
   const inputRef = useRef<HTMLInputElement>(null)
 
@@ -123,7 +124,7 @@ export default function Hero({ data }: HeroProps) {
             <div className="hero-actions hero-anim">
               <a href="#projects" className="btn-primary">View Projects</a>
               <a
-                href={data.resumeUrl ?? "/portfolio/resume.pdf"}
+                href={resumeHref}
                 target="_blank"
                 rel="noopener noreferrer"
                 className="btn-ghost"

@@ -88,9 +88,7 @@ function CodeBlock() {
 }
 
 interface HeroProps {
-  data: SiteData & {
-    resumeUrl?: string | null; // Still keep this here since we added it to the query manually
-  }
+  data: SiteData
 }
 
 export default function Hero({ data }: HeroProps) {

@@ -5,6 +5,7 @@ export const fallbackData: SiteData = {
   tagline: 'AI/ML Engineer & Software Developer — building intelligent systems with purpose. CSE student at ITER, SOA University.',
   eyebrow: 'Available for opportunities',
   email: 'dg.kgp10@gmail.com',
+  resumeUrl: null,
   github: 'https://github.com/Gourav-Desetty',
   linkedin: 'https://www.linkedin.com/in/gourav-desetty-828946201/',
   twitter: 'https://x.com/gourav_dg',

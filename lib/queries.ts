@@ -1,7 +1,9 @@
 import { client } from './sanity.client'
 
 export async function getSiteData() {
-  return client.fetch(`*[_type == "siteData"][0]{
+  // Prefer the most recently updated document — [*][0] is undefined when many
+  // "Site Data" docs exist (e.g. several "Untitled"), so the site could show the wrong one.
+  return client.fetch(`*[_type == "siteData"] | order(_updatedAt desc)[0]{
     name, tagline, eyebrow, email, github, linkedin, twitter, leetcode,
     aboutHeading, aboutBio, aboutQuote,
     "photo": photo.asset->url,

@@ -6,12 +6,12 @@ import Projects from '@/components/Projects'
 import Contact from '@/components/Contact'
 import ScrollReveal from '@/components/ScrollReveal'
 import { fallbackData } from '@/lib/fallbackData'
+import { sanityProjectId } from '@/lib/sanityEnv'
 import { SiteData } from '@/types'
 
-// Try to fetch from Sanity; fall back to static data if not configured
+// Try to fetch from Sanity (lib/sanityEnv falls back to project defaults); static fallback on errors / placeholder
 async function getData(): Promise<SiteData> {
-  const projectId = process.env.NEXT_PUBLIC_SANITY_PROJECT_ID
-  if (!projectId || projectId === 'your_project_id') return fallbackData
+  if (sanityProjectId === 'your_project_id') return fallbackData
   try {
     const { getSiteData } = await import('@/lib/queries')
     const data = await getSiteData()

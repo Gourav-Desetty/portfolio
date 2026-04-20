@@ -1,4 +1,8 @@
-import { SiteData } from '@/types'
+'use client'
+
+import { useEffect, useState } from 'react'
+import { sanityApiVersion, sanityDataset, sanityProjectId } from '@/lib/sanityEnv'
+import { Project, SiteData } from '@/types'
 
 const GithubIcon = () => (
   <svg viewBox="0 0 24 24" fill="currentColor" className="w-[13px] h-[13px]">
@@ -11,6 +15,24 @@ interface ProjectsProps {
 }
 
 export default function Projects({ data }: ProjectsProps) {
+  const [projects, setProjects] = useState<Project[]>(data.projects || [])
+
+  useEffect(() => {
+    const query = `*[_type == "siteData"] | order(_updatedAt desc)[0]{projects[]{number, title, description, highlights, tags, githubUrl}}`
+    const qs = new URLSearchParams({ query })
+    const url = `https://${sanityProjectId}.api.sanity.io/v${sanityApiVersion}/data/query/${sanityDataset}?${qs}`
+
+    fetch(url, { cache: 'no-store' })
+      .then((r) => r.json())
+      .then((json: { result?: { projects?: Project[] } }) => {
+        const next = json.result?.projects
+        if (Array.isArray(next) && next.length > 0) setProjects(next)
+      })
+      .catch(() => {
+        // keep server-rendered fallback order
+      })
+  }, [])
+
   return (
     <section id="projects">
       <div className="wrapper" style={{ textAlign: 'left' }}>
@@ -18,7 +40,7 @@ export default function Projects({ data }: ProjectsProps) {
         <h2 className="reveal">Selected Work</h2>
         <p className="sub reveal">End-to-end ML systems built with real-world constraints in mind.</p>
         <div className="projects-grid">
-          {(data.projects || []).map((project, i) => (
+          {projects.map((project, i) => (
             <div key={i} className="project-card reveal">
               {/* 1. Add z-index or relative positioning to ensure text stays on top */}
               <div className="project-content" style={{ position: 'relative', zIndex: 2 }}>
